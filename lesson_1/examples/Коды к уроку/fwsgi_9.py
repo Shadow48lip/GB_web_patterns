@@ -2,7 +2,7 @@ from wsgiref.simple_server import make_server
 
 
 def index_view(request):
-    print(request)
+    print('from index: ', request)
     return '200 OK', [b'Index']
 
 
@@ -58,7 +58,7 @@ class Application:
         # front controller
         for front in self.fronts:
             front(request)
-        print(request)
+        print('req: ', request)
         code, body = view(request)
         start_response(code, [('Content-Type', 'text/html')])
         return body
