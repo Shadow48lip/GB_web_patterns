@@ -1,7 +1,8 @@
 from wsgiref.simple_server import make_server
-
+from pprint import pprint
 
 def application(environ, start_response):
+    pprint(environ)
     method = environ['REQUEST_METHOD']
     print('method', method)  # method GET
     start_response('200 OK', [('Content-Type', 'text/html')])
