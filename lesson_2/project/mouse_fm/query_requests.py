@@ -1,8 +1,12 @@
+import urllib.parse
 # get requests
 class GetRequests:
 
     @staticmethod
     def parse_input_data(data: str):
+        # url decode
+        data = urllib.parse.unquote_plus(data)
+
         result = {}
         if data:
             # делим параметры через &
@@ -27,6 +31,9 @@ class PostRequests:
 
     @staticmethod
     def parse_input_data(data: str):
+        # url decode
+        data = urllib.parse.unquote_plus(data)
+
         result = {}
         if data:
             # делим параметры через &
@@ -43,7 +50,7 @@ class PostRequests:
         content_length_data = env.get('CONTENT_LENGTH')
         # приводим к int
         content_length = int(content_length_data) if content_length_data else 0
-        print(content_length)
+        print('content_length:', content_length)
         # считываем данные, если они есть
         # env['wsgi.input'] -> <class '_io.BufferedReader'>
         # запускаем режим чтения
@@ -57,7 +64,7 @@ class PostRequests:
         if data:
             # декодируем данные
             data_str = data.decode(encoding='utf-8')
-            print(f'строка после декод - {data_str}')
+            print(f'строка после декод из байт - {data_str}')
             # собираем их в словарь
             result = self.parse_input_data(data_str)
         return result
