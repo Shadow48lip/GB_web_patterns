@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block name_page %}
+курсы
+{% endblock %}
+{% block content %}
+		<h1>Создание курса</h1>
+
+        <h2>Категория "{{name}}"</h2>
+
+        <form method="post">
+            <label>Категория <input type="text" name="name" value="" placeholder="название"></label><br>
+            <input type="hidden" name="cat_id" value="{{id}}">
+            <label><input type="radio" name="type" value="offline" checked> Офлайн</label>,
+            <label><input type="radio" name="type" value="interactive" checked> Интерактивный</label><br>
+            <label>Адрес проведения <input type="text" name="address" value="" placeholder="улица либо url"></label><br>
+
+            <input type="submit" value="создать новый курс">
+        </form>
+
+        <br>
+        <p><a href="/courses-list/?id={{id}}">назад</a></p>
+{% endblock %}

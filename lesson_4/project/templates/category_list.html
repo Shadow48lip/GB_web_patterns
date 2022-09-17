@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block name_page %}
+главная страница
+{% endblock %}
+{% block content %}
+
+        <h2>Категории курсов</h2>
+
+        <ul>
+            {% for item in categories %}
+        <li>
+            <b>{{item.name}}</b>
+        </li>
+            {% endfor %}
+        </ul>
+{% endblock %}

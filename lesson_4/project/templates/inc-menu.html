@@ -1,0 +1,13 @@
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li {% if site.menu == '/' %} class="selected" {% endif %}>
+            <a href="/">Главная</a></li>
+
+          <li {% if site.menu == '/category-list/' %} class="selected" {% endif %}>
+            <a href="/category-list/">Категории</a></li>
+
+          <li {% if site.menu == '/contacts/' %} class="selected" {% endif %}>
+            <a href="/contact/">Контакты</a></li>
+        </ul>
+      </div>

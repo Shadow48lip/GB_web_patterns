@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block name_page %}
+категории
+{% endblock %}
+{% block content %}
+		<h1>Категории курсов</h1>
+
+        <h2>Новая категория</h2>
+
+        <form method="post">
+            <label>Категория
+                <input type="text" name="name" value="" placeholder="название">
+            </label>
+            <input type="submit" value="создать">
+        </form>
+
+        <br>
+        <p><a href="/">назад</a></p>
+{% endblock %}
