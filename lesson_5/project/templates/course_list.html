@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block name_page %}
+главная страница
+{% endblock %}
+{% block content %}
+
+<h1>Список курсов</h1>
+
+<p>Вы можете <a href="/create-course/?id={{id}}">добавить новый курс</a>.</p>
+
+<h2>Категория "{{cat_name}}"</h2>
+
+        <ul>
+            {% for item in cources_list %}
+        <li>
+            <b>{{item.name}}</b> {{item.type}} ({{item.address}})
+            <br><span><a href="/copy-course/?id={{item.id}}">скопировать</a>
+        </li>
+            {% endfor %}
+        </ul>
+
+
+{% endblock %}

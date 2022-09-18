@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block name_page %}
+категории
+{% endblock %}
+{% block content %}
+<h1>Категории курсов</h1>
+
+<h2>Новая категория</h2>
+
+<form method="post">
+    <label>Родительская категория
+        <select name="parent_cat">
+            <option value="">корневая</option>
+            {% for item in categories %}
+            <option value="{{item.id}}">{{item.name}}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <br>
+
+    <label>Новая категория
+        <input type="text" name="name" value="" placeholder="название">
+    </label>
+    <input type="submit" value="создать">
+</form>
+
+<br>
+<p><a href="/">назад</a></p>
+{% endblock %}

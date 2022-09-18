@@ -1,0 +1,25 @@
+﻿{% extends "base.html" %}
+
+{% block name_page %}
+главная страница
+{% endblock %}
+{% block content %}
+		<h1>Добро пожаловать в Mouse framework</h1>
+        <p>Курсовой проект по написанию мини-фреймворка с учетом паттернов проектированияю</p>
+
+        <h2>Категории курсов</h2>
+        <p><a href="/create-category/">Создать новую категорию</a></p>
+
+        <p>Выбирайте подходящую:</p>
+        <ul>
+            {% for item in categories %}
+        <li>
+            <b>{{item.name}}</b>
+            <br/><i><span>Курсов: {{item.courses_count}}</span>
+			<a href="/courses-list/?id={{item.id}}">Показать курсы</a></i>
+        </li>
+            {% endfor %}
+        </ul>
+{% endblock %}
+
+
