@@ -16,10 +16,6 @@ class Index:
         logger.log('Load Index')
         [print(item.__dict__) for item in site.categories]
 
-        category_tree = []
-        for item in site.categories:
-            pass
-
         return '200 OK', render('index.html', site=request.get('template_var', None),
                                 categories=site.categories)
 
@@ -45,9 +41,10 @@ class CreateCategory:
             new_category = Engine.create_category(name, category)
             # print('!!!! ', new_category)
             site.categories.append(new_category)
+            hierarchy_categories = site.hierarchy_categories
 
             return '200 OK', render('index.html', site=request.get('template_var', None),
-                                    categories=site.categories)
+                                    categories=hierarchy_categories)
         else:
             return '200 OK', render('create_category.html', site=request.get('template_var', None),
                                     categories=site.categories)
@@ -110,6 +107,8 @@ class CoursesList:
             category = site.find_category_by_id(int(request['get_params']['id']))
             courses = filter(lambda item: (item.category.id == category.id), site.courses)
 
+            [print(item.__dict__) for item in site.courses]
+
             return '200 OK', render('course_list.html', site=request.get('template_var', None),
                                     cources_list=courses, cat_name=category.name, id=category.id)
         except KeyError:
@@ -136,7 +135,8 @@ class CopyCourse:
             new_course.id = new_course.incr_id()
             # deepcopy копирует вложенный массив, а нам нужна ссылка как у оригинала. Для счетчика
             new_course.category = old_course.category
-            new_course.category.courses_count += 1
+            # new_course.category.courses_count += 1
+            site.incr_category_course_count(new_course.category)
             site.courses.append(new_course)
 
             return '200 OK', render('course_list.html', site=request.get('template_var', None),

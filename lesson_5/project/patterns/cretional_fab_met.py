@@ -21,7 +21,7 @@ class Course(CoursePrototype):
         self.id = self.incr_id()
         self.name = name
         self.category = category
-        self.category.courses_count += 1
+        # self.category.courses_count += 1
         # self.category.courses.append(self)
 
 
@@ -44,7 +44,7 @@ class OfflineCourse(Course):
 class CourseFactory:
     types = {
         'interactive': InteractiveCourse,
-        'offline': OfflineCourse
+        'offline': OfflineCourse,
     }
 
     # порождающий паттерн Фабричный метод
