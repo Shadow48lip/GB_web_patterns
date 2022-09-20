@@ -10,7 +10,7 @@
 
 <form method="post">
     <label>Родительская категория
-        <select name="parent_cat">
+        <select name="cat_id">
             <option value="">корневая</option>
             {% for item in categories %}
             <option value="{{item.id}}">{{item.name}}</option>

@@ -69,3 +69,18 @@ class Engine:
             if item.id == id:
                 return item
         raise Exception(f'Not found course id = {id}')
+
+    # тестовое наполнение словаря
+    def create_test_data(self):
+        new_category1 = self.create_category('Cat 1', None)
+        self.categories.append(new_category1)
+        new_category2 = self.create_category('Cat 2', None)
+        self.categories.append(new_category2)
+        new_category = self.create_category('Cat 3', new_category2)
+        self.categories.append(new_category)
+        new_category = self.create_category('Cat 4', new_category1)
+        self.categories.append(new_category)
+        new_category = self.create_category('Cat 5', new_category2)
+        self.categories.append(new_category)
+        print('created test data')
+

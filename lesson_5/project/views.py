@@ -1,3 +1,4 @@
+from pprint import pprint
 from mouse_fm.templator import render
 from engine import Logger, Engine
 from patterns.structure_deco import Debug, Route
@@ -13,9 +14,14 @@ class Index:
     def __call__(self, request):
         """ Контроллер - главная страница """
         logger.log('Load Index')
+        [print(item.__dict__) for item in site.categories]
+
+        category_tree = []
+        for item in site.categories:
+            pass
+
         return '200 OK', render('index.html', site=request.get('template_var', None),
                                 categories=site.categories)
-
 
 
 @Route(routes, '/create-category/')
@@ -30,8 +36,11 @@ class CreateCategory:
         if method == 'POST':
             post_data = request['post_data']
             name = post_data['name']
-            # категории пока нет
-            category = None
+            try:
+                self.category_id = int(post_data['cat_id'])
+                category = site.find_category_by_id(int(self.category_id))
+            except ValueError:
+                category = None
 
             new_category = Engine.create_category(name, category)
             # print('!!!! ', new_category)
@@ -145,10 +154,11 @@ class Contact:
         return '200 OK', render('contact.html', site=request.get('template_var', None))
 
 
-@Route(routes, '/about/')
-class About:
+@Route(routes, '/create_test/')
+class CreateTestData:
     def __call__(self, request):
-        return '200 OK', 'This is school project'
+        site.create_test_data()
+        return '200 OK', 'Test data created'
 
 
 class ErrPageNotFound404:
