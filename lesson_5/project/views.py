@@ -139,8 +139,11 @@ class CopyCourse:
             site.incr_category_course_count(new_course.category)
             site.courses.append(new_course)
 
+            # отфильтрованные курсы по текущей категории
+            courses = filter(lambda item: (item.category.id == new_course.category.id), site.courses)
+
             return '200 OK', render('course_list.html', site=request.get('template_var', None),
-                                    cources_list=site.courses, cat_name=new_course.category.name,
+                                    cources_list=courses, cat_name=new_course.category.name,
                                     id=new_course.category.id)
         except KeyError:
             return '200 OK', 'No courses have been added yet'

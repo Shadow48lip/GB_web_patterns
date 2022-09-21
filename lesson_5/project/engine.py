@@ -74,6 +74,7 @@ class Engine:
         raise Exception(f'Not found course id = {id}')
 
     def _incr_category_course_count_worker(self, base_category):
+        """ Рекурсивный приватный метод инкрементного увеличения счетчика по иерархии """
         base_category.courses_count += 1
 
         if base_category.category is None:
@@ -81,10 +82,7 @@ class Engine:
 
         for category in self.categories:
             if category.id == base_category.category.id:
-                category.courses_count += 1
-
-                if category.category is not None:
-                    self._incr_category_course_count_worker(category)
+                self._incr_category_course_count_worker(category)
                 break
 
     def incr_category_course_count(self, base_category):
