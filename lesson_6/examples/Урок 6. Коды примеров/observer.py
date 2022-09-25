@@ -80,4 +80,4 @@ sensor.attach(HeaterObserver(40, 20))
 sensor.attach(SmsNotifier())
 
 # изменяем состояние сенсора
-sensor.t = 20
+sensor.t = 21

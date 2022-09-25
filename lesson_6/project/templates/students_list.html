@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block name_page %}
+главная страница
+{% endblock %}
+{% block content %}
+
+<h1>Студенты</h1>
+
+<ul>
+    <li><a href="/create-student/">создать студента</a></li>
+    <li><a href="/add-student/">добавить студента на курс</a></li>
+</ul>
+
+
+<h2>Студенты</h2>
+        <ul>
+            {% for item in objects_list.students %}
+        <li>
+            <b>{{item.name}}</b>
+        </li>
+            {% endfor %}
+        </ul>
+{% endblock %}
+
+
