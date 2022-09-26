@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block name_page %}
+главная страница
+{% endblock %}
+{% block content %}
+
+<h1>Студенты</h1>
+
+<h2>Запись студента на курс</h2>
+
+<form method="post">
+    <label>
+        Выберите студента<br>
+        <select name="student_name">
+            {% for item in objects_list.students %}
+            <option value="{{item.name}}">{{item.name}}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <br><br>
+    <label>
+        Курс для записи<br>
+        <select name="course_id">
+            {% for item in objects_list.courses %}
+            <option value="{{item.id}}">{{item.name}}</option>
+            {% endfor %}
+        </select>
+    </label>
+
+    <p><input type="submit" value="запомнить"></p>
+</form>
+
+{% endblock %}
